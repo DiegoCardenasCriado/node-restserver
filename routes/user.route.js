@@ -1,16 +1,4 @@
 const { Router } = require('express');
-const { userGet, 
-    userPost, 
-    userPut, 
-    userPatch, 
-    userDelete } = require('../controllers/user.controller');
-
-const router = Router();
-
-router.get('/', userGet);
-
-router.post('/', userPost);
-router.put('/', userPut);const { Router } = require('express');
 const { check } = require('express-validator');
 
 const { validarCampos } = require('../middlewares/validar-campos');
@@ -47,9 +35,5 @@ router.delete('/:id', [
     check('id').custom( existUserById ),
     validarCampos
 ],userDelete);
-
-module.exports = router;
-router.patch('/', userPatch);
-router.delete('/', userDelete);
 
 module.exports = router;
