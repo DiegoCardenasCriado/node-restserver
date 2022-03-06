@@ -68,6 +68,8 @@ const userDelete = async(req, res) => {
 
     const { id } = req.params;
 
+    const userAuthentication = req.user;
+
     // Eliminamos el registro permanente
     // const userDelete = User.findByIdAndDelete(id);
 
@@ -75,7 +77,8 @@ const userDelete = async(req, res) => {
     const userDelete = await User.findByIdAndUpdate( id, { state: false } );
     res.json({
         msg: 'DELETE API - CONTROLLER',
-        userDelete
+        userDelete,
+        userAuthentication
     });
 }
 
