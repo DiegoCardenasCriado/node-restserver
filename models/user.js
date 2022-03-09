@@ -22,6 +22,7 @@ const userSchema = Schema({
     role: {
         type: String,
         required: [true, 'The role is equired'],
+        default: 'USER_ROLE',
         enum: ['ADMIN_ROLE', 'USER_ROLE']
     },
     state: {
