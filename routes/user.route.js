@@ -16,9 +16,9 @@ const { userGet,
     userDelete } = require('../controllers/user.controller');
 
 const router = Router();
-
+// GET ALL USER
 router.get('/', userGet);
-
+// POST USER
 router.post('/', [
     check('name', 'Name is required.').not().isEmpty(),
     check('email', 'The e-mail is not valid.').isEmail(),
@@ -28,13 +28,16 @@ router.post('/', [
     check('role').custom( existRole ),
     validarCampos
 ],userPost);
+// PUT USER
 router.put('/:id', [
     check('id', 'The ID is not valid.').isMongoId(),
     check('id').custom( existUserById ),
     check('role').custom( existRole ),
     validarCampos
 ],userPut);
+// PATCH USER
 router.patch('/', userPatch);
+// DELETE USER
 router.delete('/:id', [
     validarJWT,
     // isAdminRole,
