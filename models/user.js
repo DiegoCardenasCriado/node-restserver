@@ -22,8 +22,7 @@ const userSchema = Schema({
     role: {
         type: String,
         required: [true, 'The role is equired'],
-        default: 'USER_ROLE',
-        enum: ['ADMIN_ROLE', 'USER_ROLE']
+        default: 'USER_ROLE'
     },
     state: {
         type: Boolean,
@@ -42,4 +41,4 @@ const userSchema = Schema({
         return user;
     }
 
-module.exports = model( 'user', userSchema );
+module.exports = model( 'User', userSchema );
