@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const fileUpload = require('express-fileupload');
 const { dbConnection } = require('../database/config.js');
 
 
@@ -14,7 +15,8 @@ class Server {
             category: '/api/categories',
             product:  '/api/products',
             search:   '/api/search',
-            user:     '/api/users'
+            user:     '/api/users',
+            uploads:     '/api/uploads'
         }
         
         // Conectar DB
@@ -41,6 +43,13 @@ class Server {
 
         // Directorio público
         this.app.use( express.static('public') );
+
+        // Fileupload
+        this.app.use(fileUpload({
+            useTempFiles : true,
+            tempFileDir : '/tmp/',
+            createParentPath: true
+        }));
     }
 
     routes() {
@@ -49,6 +58,7 @@ class Server {
         this.app.use( this.routesPath.product, require('../routes/product.route'));
         this.app.use( this.routesPath.search, require('../routes/search.route'));
         this.app.use( this.routesPath.user, require('../routes/user.route'));
+        this.app.use( this.routesPath.uploads, require('../routes/uploads.route'));
     }
 
     listen() {

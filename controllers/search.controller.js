@@ -2,7 +2,7 @@ const { ObjectId } = require('mongoose').Types
 const { User, Category, Product } = require('../models')
 
 
-const Allowedcollections = [
+const allowedCollections = [
     'categories',
     'products',
     'roles',
@@ -100,7 +100,7 @@ const search = ( req, res ) => {
             userSearch( search, res );
             break;
         default:
-
+            return res.status(500).json({ msg: 'Sorry!, I forgot to validate that.' });
             break;
     }
 }
